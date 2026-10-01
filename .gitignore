@@ -31,3 +31,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .eslintcache
+
+# ---------- Python（图标与社交预览图的生成脚本）----------
+__pycache__/
+*.py[cod]

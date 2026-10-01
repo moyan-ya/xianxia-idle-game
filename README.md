@@ -1,8 +1,52 @@
-# 仙侠放置 · 可运行 MVP
+<div align="center">
+  <img src="client/public/icon-192.png" width="112" alt="仙侠放置 · 一念千年">
+  <h1>仙侠放置 · 一念千年</h1>
+  <p><b>挂机攒灵石与修为，服丹破境，洗练灵根，闯试炼塔，问鼎天榜。</b><br>
+  一个把「时间」和「战斗」都认真做过的文字放置修仙游戏。</p>
+</div>
 
-一个能跑起来的仙侠题材放置（挂机）游戏。前端 **Vue 2.6 + Element UI 2.15**，后端 **Node 16 + Express 4**，数据库 **MySQL 8.0**。
+<p align="center">
+  <img alt="Vue 2.6" src="https://img.shields.io/badge/Vue-2.6-42b883">
+  <img alt="Element UI 2.15" src="https://img.shields.io/badge/Element_UI-2.15-409eff">
+  <img alt="Node 16" src="https://img.shields.io/badge/Node-16-339933">
+  <img alt="Express 4" src="https://img.shields.io/badge/Express-4-000000">
+  <img alt="MySQL 8.0" src="https://img.shields.io/badge/MySQL-8.0-4479a1">
+</p>
 
-> 本仓库按《[仙侠游戏-方案选型与架构建议.md](仙侠游戏-方案选型与架构建议.md)》里的**方案一（文字放置修仙）**实现，并按方案二预留了战斗内核位置。
+<p align="center">
+  <img alt="对抗性探针 203 项通过" src="https://img.shields.io/badge/对抗性探针-203%20项通过-35b39a">
+  <img alt="冒烟测试 59 项通过" src="https://img.shields.io/badge/冒烟测试-59%20项通过-35b39a">
+</p>
+
+---
+
+## 这是什么
+
+一个从零手写的仙侠放置（挂机）游戏，**不是只搭了个能跑的壳**。
+
+放置类最容易糊弄的两处是「时间」和「战斗」——前者常靠定时器扫全服，后者常把结果丢给前端。这个项目在这两处都做了正经处理：
+
+- **离线收益不靠轮询** —— 惰性结算：没有定时器、不遍历全服，收益由 `now - last_settle_at` 算出；落库节流到 60 秒一次，用 `last_settle_at` 做 CAS 守卫，**8 个并发请求同时打只会发一份钱**（探针里有这条断言）；离线超过 12 小时的部分按 20% 折算。
+- **战斗结果可信** —— 服务端权威 + **种子可复算**：随机种子与双方面板一并入库，同一份输入能完整重跑整场战局，这是查作弊与客服补单的地基。
+- **伤害按每条灵根分别判定五行克制** —— 系数不是写死的常数。同一套道体打不同五行，系数在 0.75~1.30 之间浮动；而且**公式本身在游戏内对玩家公开**。
+- **账目对得上** —— 货币流水只有一个记账口径：每行的 `delta` 只反映它自己的 `reason`，结算永远单列，按 `delta` 求和就能对账。
+- **数值可维护** —— 试炼塔 15 层的怪物数值不是手填的，由 `scripts/tune-tower.js` 按「预期境界档」反推；探针再用**真实战斗内核跑 200 个种子**校验每层胜率，杜绝"标定器自己认定的参考玩家却打不过"这种硬墙。
+- **回归有闸门** —— `smoke-test.js`（59 项完整闭环）与 `bug-probe.js`（203 项对抗性探针：并发、边界、越权、原子性、数值平衡）。
+
+> 定位是**学习与自用向的完整 MVP**，不是生产系统。已知边界（试炼塔无每日限次、排行榜实时 `COUNT`、无日志归档等）都写在[第十节](#十已知边界)里，没有藏。
+
+## 技术栈
+
+| 层 | 选型 | 说明 |
+|---|---|---|
+| 前端 | Vue 2.6.14 · Element UI 2.15.14 | Vuex 3 / vue-router 3（hash）/ axios。暗色仙侠主题，并逐条覆盖了 Element 默认浅色样式的特异性坑（表格 hover、tag、radio、分页器） |
+| 后端 | Node 16 · Express 4 | mysql2/promise + JWT + bcryptjs。**不用 ORM**，SQL 与事务边界全部显式书写 |
+| 数据库 | MySQL 8.0（utf8mb4_0900_ai_ci） | 7 张表；灵根与战斗留档用 JSON 列 |
+| 图标 | Python + Pillow | `client/scripts/make-icon.py` 生成 favicon 全套，每个尺寸原生渲染而非缩放 |
+
+方案文档见《[仙侠游戏-方案选型与架构建议.md](仙侠游戏-方案选型与架构建议.md)》——本仓库按其中**方案一（文字放置修仙）**实现，并按方案二预留了战斗内核位置。
+
+---
 
 ---
 
@@ -174,7 +218,7 @@ node scripts/cleanup-test-data.js --apply   # 清理 probe/smoke 测试账号，
 
 ---
 
-## 三、四个值得注意的设计
+## 四、四个值得注意的设计
 
 ### 1. 惰性结算（性能地基）
 
@@ -219,12 +263,18 @@ const report = battleCore.simulate(player, monster, seed);
 
 ---
 
-## 四、目录结构
+## 五、目录结构
 
 ```
 demo/
 ├─ 仙侠游戏-方案选型与架构建议.md     # 四份方案对比与选型依据
 ├─ README.md
+├─ 启动命令.txt                       # 本地启动速查
+├─ .gitignore
+├─ scripts/
+│  └─ make-social-card.py             # 生成 GitHub 社交预览图（复用站点图标）
+├─ docs/
+│  └─ social-preview.png              # 传到 仓库 Settings → Social preview
 ├─ server/
 │  ├─ app.js                          # 入口（含优雅退出）
 │  ├─ .env.example                    # 配置模板
@@ -232,9 +282,10 @@ demo/
 │  ├─ scripts/
 │  │  ├─ init-db.js                   # 建库建表 + 演示账号
 │  │  ├─ migrate.js                   # 老库平滑升级（不丢数据）
+│  │  ├─ tune-tower.js                # 按境界档反推试炼塔数值（改平衡改这里）
 │  │  ├─ cleanup-test-data.js         # 清理测试账号
-│  │  ├─ smoke-test.js                # 端到端冒烟测试
-│  │  └─ bug-probe.js                 # 对抗性探针
+│  │  ├─ smoke-test.js                # 端到端冒烟测试（59 项）
+│  │  └─ bug-probe.js                 # 对抗性探针（203 项）
 │  └─ src/
 │     ├─ config/                      # 环境配置 + mysql2 连接池/事务封装
 │     ├─ game/                        # 【配置表】境界/物品/塔层/世界规则 JSON
@@ -246,21 +297,23 @@ demo/
 │     └─ utils/                       # 统一响应、时间处理
 └─ client/
    ├─ vue.config.js                   # 代理 /api → 3000
+   ├─ public/                         # favicon 全套 + site.webmanifest
+   ├─ scripts/make-icon.py            # 生成站点图标（每个尺寸原生渲染，非缩放）
    └─ src/
       ├─ api/                         # axios 封装 + 接口清单
       ├─ store/                       # Vuex：档案、配置、本地插值、行动记录
       ├─ router/
       ├─ assets/theme.scss            # Element UI 青玉+鎏金主题覆盖
-      ├─ utils/format.js              # 万/亿/兆 数值展示
+      ├─ utils/format.js              # 万/亿/兆/京 数值展示
       ├─ views/                       # Login、Game（左角色 / 中页签 / 右行动区）
-      └─ components/                  # RolePanel/CultivatePanel/RootPanel/BagPanel/
-                                      # ShopPanel/TowerPanel/RankPanel/LogPanel/
-                                      # ActionFeed/BattleReportDialog
+      └─ components/                  # RolePanel/CultivatePanel/RealmPanel/RootPanel/
+                                      # BagPanel/ShopPanel/TowerPanel/RankPanel/
+                                      # LogPanel/ActionFeed/BattleReportDialog
 ```
 
 ---
 
-## 五、接口清单
+## 六、接口清单
 
 响应统一为 `{ code, msg, data }`，业务错误 `code != 0`（HTTP 仍 200），仅鉴权失败返回 401。
 
@@ -291,7 +344,7 @@ demo/
 
 ---
 
-## 六、怎么调数值
+## 七、怎么调数值
 
 改 `server/src/game/*.json` 就行，代码里没有任何硬编码数值，改完重启后端生效：
 
@@ -307,7 +360,7 @@ demo/
 
 ---
 
-## 七、下一步可以做什么
+## 八、下一步可以做什么
 
 按性价比排序：
 
@@ -319,7 +372,7 @@ demo/
 
 ---
 
-## 八、已修复的缺陷（第一轮排查）
+## 九、已修复的缺陷
 
 由 `bug-probe.js` 对抗性测试与人工审查发现，均已修复并加了回归断言：
 
@@ -399,7 +452,7 @@ demo/
 
 ---
 
-## 九、已知边界
+## 十、已知边界
 
 - 单角色单账号，未做多角色切换。
 - 试炼塔无每日次数限制（放置类可接受，需要限次时加一张 `role_stage_daily`）。
