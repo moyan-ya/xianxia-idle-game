@@ -1,0 +1,261 @@
+{
+  "_comment": "试炼塔：逐层解锁，首通全额奖励，重复挑战 30% 奖励，挑战失败按 failExp 扣修为。数值由 scripts/tune-tower.js 标定，改平衡请改那个脚本再重跑。",
+  "repeatRewardRate": 0.3,
+  "stages": [
+    {
+      "id": 1,
+      "name": "迷雾林 · 妖狼",
+      "element": "木",
+      "monster": {
+        "name": "青毛妖狼",
+        "hp": 224,
+        "atk": 7,
+        "def": 3,
+        "speed": 9
+      },
+      "reward": {
+        "exp": 262,
+        "stone": 13
+      },
+      "failExp": 92
+    },
+    {
+      "id": 2,
+      "name": "落霞谷 · 赤蟒",
+      "element": "火",
+      "monster": {
+        "name": "赤鳞巨蟒",
+        "hp": 332,
+        "atk": 14,
+        "def": 6,
+        "speed": 9
+      },
+      "reward": {
+        "exp": 476,
+        "stone": 24
+      },
+      "failExp": 167
+    },
+    {
+      "id": 3,
+      "name": "寒潭 · 水魅",
+      "element": "水",
+      "monster": {
+        "name": "寒潭水魅",
+        "hp": 1311,
+        "atk": 83,
+        "def": 21,
+        "speed": 10
+      },
+      "reward": {
+        "exp": 5716,
+        "stone": 286
+      },
+      "failExp": 2001
+    },
+    {
+      "id": 4,
+      "name": "石鼓山 · 石傀",
+      "element": "土",
+      "monster": {
+        "name": "守山石傀",
+        "hp": 1599,
+        "atk": 95,
+        "def": 24,
+        "speed": 10
+      },
+      "reward": {
+        "exp": 6574,
+        "stone": 329
+      },
+      "failExp": 2301
+    },
+    {
+      "id": 5,
+      "name": "幽篁竹海 · 竹妖",
+      "element": "木",
+      "monster": {
+        "name": "千年竹妖",
+        "hp": 4381,
+        "atk": 188,
+        "def": 71,
+        "speed": 11
+      },
+      "reward": {
+        "exp": 71454,
+        "stone": 3573
+      },
+      "failExp": 25009
+    },
+    {
+      "id": 6,
+      "name": "断魂崖 · 鬼修",
+      "element": "金",
+      "monster": {
+        "name": "断魂鬼修",
+        "hp": 4469,
+        "atk": 192,
+        "def": 73,
+        "speed": 11
+      },
+      "reward": {
+        "exp": 82172,
+        "stone": 4109
+      },
+      "failExp": 28760
+    },
+    {
+      "id": 7,
+      "name": "丹霞洞 · 火麟",
+      "element": "火",
+      "monster": {
+        "name": "丹霞火麟",
+        "hp": 11424,
+        "atk": 467,
+        "def": 185,
+        "speed": 12
+      },
+      "reward": {
+        "exp": 857443,
+        "stone": 42872
+      },
+      "failExp": 300105
+    },
+    {
+      "id": 8,
+      "name": "玄冰渊 · 冰魄",
+      "element": "水",
+      "monster": {
+        "name": "玄冰冰魄",
+        "hp": 13260,
+        "atk": 477,
+        "def": 203,
+        "speed": 12
+      },
+      "reward": {
+        "exp": 986059,
+        "stone": 49303
+      },
+      "failExp": 345121
+    },
+    {
+      "id": 9,
+      "name": "万剑冢 · 剑灵",
+      "element": "金",
+      "monster": {
+        "name": "残剑之灵",
+        "hp": 43981,
+        "atk": 3910,
+        "def": 711,
+        "speed": 13
+      },
+      "reward": {
+        "exp": 10479853,
+        "stone": 523993
+      },
+      "failExp": 3667949
+    },
+    {
+      "id": 10,
+      "name": "黄泉渡 · 冥将",
+      "element": "土",
+      "monster": {
+        "name": "黄泉冥将",
+        "hp": 54751,
+        "atk": 4223,
+        "def": 836,
+        "speed": 13
+      },
+      "reward": {
+        "exp": 12051831,
+        "stone": 602592
+      },
+      "failExp": 4218141
+    },
+    {
+      "id": 11,
+      "name": "九霄雷池 · 雷兽",
+      "element": "金",
+      "monster": {
+        "name": "九霄雷兽",
+        "hp": 181158,
+        "atk": 18139,
+        "def": 2928,
+        "speed": 14
+      },
+      "reward": {
+        "exp": 123852813,
+        "stone": 6192641
+      },
+      "failExp": 43348485
+    },
+    {
+      "id": 12,
+      "name": "焚天谷 · 焚天兽",
+      "element": "火",
+      "monster": {
+        "name": "焚天古兽",
+        "hp": 208163,
+        "atk": 19590,
+        "def": 3180,
+        "speed": 14
+      },
+      "reward": {
+        "exp": 142430735,
+        "stone": 7121537
+      },
+      "failExp": 49850757
+    },
+    {
+      "id": 13,
+      "name": "昆仑墟 · 守墟人",
+      "element": "土",
+      "monster": {
+        "name": "昆仑守墟人",
+        "hp": 912359,
+        "atk": 87282,
+        "def": 14747,
+        "speed": 15
+      },
+      "reward": {
+        "exp": 1524342318,
+        "stone": 76217116
+      },
+      "failExp": 533519811
+    },
+    {
+      "id": 14,
+      "name": "虚空裂隙 · 域外天魔",
+      "element": "水",
+      "monster": {
+        "name": "域外天魔",
+        "hp": 977534,
+        "atk": 89028,
+        "def": 15042,
+        "speed": 15
+      },
+      "reward": {
+        "exp": 1752993666,
+        "stone": 87649683
+      },
+      "failExp": 613547783
+    },
+    {
+      "id": 15,
+      "name": "太初道场 · 道韵化身",
+      "element": "金",
+      "monster": {
+        "name": "道韵化身",
+        "hp": 4081635,
+        "atk": 427585,
+        "def": 65975,
+        "speed": 16
+      },
+      "reward": {
+        "exp": 19054278978,
+        "stone": 952713949
+      },
+      "failExp": 6668997642
+    }
+  ]
+}

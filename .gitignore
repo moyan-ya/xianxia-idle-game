@@ -1,0 +1,33 @@
+# ---------- 依赖 ----------
+node_modules/
+
+# ---------- 本地配置（含数据库密码与 JWT 密钥，绝对不要提交）----------
+server/.env
+.env.local
+.env.*.local
+
+# ---------- 构建产物 ----------
+client/dist/
+server/dist/
+
+# ---------- 本地缓存 ----------
+.npm-cache/
+client/node_modules/.cache/
+
+# ---------- 编辑器 / IDE ----------
+.idea/
+*.iml
+.vscode/
+!.vscode/extensions.json
+
+# ---------- 操作系统 ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- 日志与临时文件 ----------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache

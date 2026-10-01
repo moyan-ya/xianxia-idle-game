@@ -1,0 +1,416 @@
+/* ============================================================
+   仙侠放置 · 视觉主题
+   思路：Element UI 2 不支持 CSS 变量，所以这里用「默认样式 + 覆盖」
+   的方式改主色（青玉 + 鎏金），既稳又不依赖 element-theme 编译。
+   ============================================================ */
+
+$jade: #35b39a;
+$jade-light: #4fd3b8;
+$jade-dark: #1f7a68;
+$gold: #d9b96a;
+
+$ink-0: #070c14;
+$ink-1: #0c1421;
+$ink-2: #121e2e;
+$line: rgba(120, 200, 180, 0.16);
+$text: #dfe9f3;
+$text-dim: #8ba1b8;
+
+/* ---------- 基础 ---------- */
+body {
+  margin: 0;
+  color: $text;
+  font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", system-ui, sans-serif;
+  background-color: $ink-0;
+  background-image:
+    radial-gradient(900px 500px at 12% -10%, rgba(53, 179, 154, 0.16), transparent 60%),
+    radial-gradient(700px 420px at 92% 0%, rgba(217, 185, 106, 0.10), transparent 60%),
+    radial-gradient(800px 600px at 50% 110%, rgba(53, 179, 154, 0.08), transparent 65%);
+  background-attachment: fixed;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(120, 200, 180, 0.22); border-radius: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ---------- Element UI 主色覆盖 ---------- */
+.el-button--primary {
+  background-color: $jade-dark;
+  border-color: $jade;
+  color: #eafff9;
+}
+.el-button--primary:hover,
+.el-button--primary:focus {
+  background-color: $jade;
+  border-color: $jade-light;
+}
+.el-button--primary.is-disabled,
+.el-button--primary.is-disabled:hover {
+  background-color: rgba(53, 179, 154, 0.28);
+  border-color: rgba(53, 179, 154, 0.28);
+}
+.el-button--default {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: $line;
+  color: $text;
+}
+.el-button--default:hover,
+.el-button--default:focus {
+  background: rgba(53, 179, 154, 0.14);
+  border-color: $jade;
+  color: #eafff9;
+}
+.el-button--text { color: $jade-light; }
+.el-button--danger { background-color: #a8453c; border-color: #c2604f; }
+
+.el-tabs__item {
+  color: $text-dim;
+  font-size: 14px;
+  &:hover { color: $jade-light; }
+  &.is-active { color: $jade-light; }
+}
+.el-tabs__active-bar { background-color: $jade-light; }
+.el-tabs__nav-wrap::after { background-color: rgba(255, 255, 255, 0.06); height: 1px; }
+
+.el-progress-bar__outer { background-color: rgba(255, 255, 255, 0.07); }
+.el-progress-bar__inner {
+  background: linear-gradient(90deg, $jade-dark, $jade-light);
+  transition: width 0.6s ease;
+}
+.el-progress__text { color: $text-dim !important; }
+
+.el-card {
+  background: rgba(18, 30, 46, 0.72);
+  border: 1px solid $line;
+  color: $text;
+  box-shadow: none;
+}
+.el-card__header { border-bottom: 1px solid $line; padding: 12px 16px; color: $gold; }
+
+.el-input__inner,
+.el-textarea__inner {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: $line;
+  color: $text;
+}
+.el-input__inner:focus,
+.el-textarea__inner:focus { border-color: $jade; }
+.el-input__inner::placeholder { color: rgba(139, 161, 184, 0.6); }
+.el-input-number__decrease,
+.el-input-number__increase {
+  background: rgba(255, 255, 255, 0.05);
+  color: $text;
+  border-color: $line;
+}
+.el-input-number__decrease:hover,
+.el-input-number__increase:hover { color: $jade-light; }
+/* controls-position="right" 下 Element 给两侧按钮各画了一条 #DCDFE6 分隔线，特异性 (0,3,0) */
+.el-input-number.is-controls-right .el-input-number__increase,
+.el-input-number.is-controls-right .el-input-number__decrease { border-color: $line; }
+
+.el-dialog {
+  background: $ink-2;
+  border: 1px solid $line;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+}
+.el-dialog__title { color: $gold; }
+.el-dialog__body { color: $text; }
+.el-dialog__headerbtn .el-dialog__close { color: $text-dim; }
+.el-dialog__headerbtn:hover .el-dialog__close { color: $jade-light; }
+
+.el-message-box {
+  background: $ink-2;
+  border-color: $line;
+}
+.el-message-box__title { color: $gold; }
+.el-message-box__content { color: $text; }
+
+.el-table,
+.el-table tr,
+.el-table th,
+.el-table td { background: transparent; color: $text; }
+.el-table th { background: rgba(255, 255, 255, 0.035) !important; color: $text-dim; font-weight: 500; }
+.el-table td.el-table__cell,
+.el-table th.el-table__cell.is-leaf { border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+.el-table::before { background-color: transparent; }
+.el-table--enable-row-hover .el-table__body tr:hover > td { background: rgba(53, 179, 154, 0.10); }
+/* Element 2.15 的表格规则都写成 td.el-table__cell / th.el-table__cell.is-leaf，
+   比不加类名多一级特异性 —— 凡是覆盖必须照着写全，否则一律被压掉（亮色网格线就是这么漏出来的） */
+.el-table--enable-row-hover .el-table__body tr:hover > td.el-table__cell,
+.el-table__body tr.hover-row > td.el-table__cell {
+  background-color: rgba(53, 179, 154, 0.16) !important;
+}
+.el-table__body tr.current-row > td.el-table__cell {
+  background-color: rgba(53, 179, 154, 0.18) !important;
+}
+.el-table__body tr.el-table__row--striped > td.el-table__cell {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+.el-table .me-row > td.el-table__cell { background-color: rgba(53, 179, 154, 0.10) !important; }
+.el-table .now-row > td.el-table__cell { background-color: rgba(217, 185, 106, 0.10) !important; }
+.el-table__empty-text { color: $text-dim; }
+
+/* 单选按钮组（坊市筛选等）：默认是白底灰字，必须改成暗色 */
+.el-radio-button__inner {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: $line;
+  color: $text-dim;
+  font-weight: 400;
+}
+.el-radio-button:first-child .el-radio-button__inner { border-left: 1px solid $line; }
+.el-radio-button__inner:hover { color: $jade-light; }
+.el-radio-button__orig-radio:checked + .el-radio-button__inner {
+  background-color: $jade-dark;
+  border-color: $jade;
+  color: #eafff9;
+  box-shadow: -1px 0 0 0 $jade;
+}
+.el-radio-button__orig-radio:disabled + .el-radio-button__inner {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+  color: rgba(139, 161, 184, 0.45);
+}
+.el-radio-button__orig-radio:disabled:checked + .el-radio-button__inner {
+  background-color: rgba(53, 179, 154, 0.18);
+  color: rgba(139, 161, 184, 0.6);
+}
+
+/* 复选框同理 */
+.el-checkbox__inner {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: $line;
+}
+.el-checkbox__inner:hover,
+.el-checkbox__input.is-focus .el-checkbox__inner { border-color: $jade; }
+.el-checkbox__input.is-checked .el-checkbox__inner,
+.el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  background-color: $jade-dark;
+  border-color: $jade;
+}
+.el-checkbox__input.is-disabled .el-checkbox__inner {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.el-checkbox__label { color: $text-dim; }
+.el-checkbox__input.is-checked + .el-checkbox__label { color: $jade-light; }
+
+/* 普通单选（散灵丹选灵根等）：同样是白底，需要整套覆盖 */
+.el-radio__inner {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: $line;
+}
+.el-radio__inner:hover { border-color: $jade; }
+.el-radio__input.is-checked .el-radio__inner {
+  background: $jade-dark;
+  border-color: $jade;
+}
+.el-radio__input.is-checked .el-radio__inner::after { background-color: #eafff9; }
+.el-radio__input.is-disabled .el-radio__inner {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.el-radio__label { color: $text-dim; }
+.el-radio__input.is-checked + .el-radio__label { color: $jade-light; }
+.el-radio.is-bordered { border-color: $line; }
+
+.el-timeline-item__node { background: $jade; }
+.el-timeline-item__tail { border-left-color: rgba(255, 255, 255, 0.12); }
+.el-timeline-item__timestamp { color: $text-dim; }
+.el-timeline-item__content { color: $text; }
+
+/* 分页器：注意"共 N 条"是元素自身声明（(0,1,0)），继承永远输，必须点名覆盖 */
+.el-pagination,
+.el-pagination__total,
+.el-pagination__jump { color: $text-dim; }
+.el-pagination button,
+.el-pagination .el-pager li {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: $text-dim !important;
+}
+.el-pagination .el-pager li.active { color: $jade-light !important; background: rgba(53, 179, 154, 0.18) !important; }
+.el-pagination button:disabled { background: rgba(255, 255, 255, 0.02) !important; color: rgba(139, 161, 184, 0.4) !important; }
+/* 上面的 !important 会把 Element 的 hover 反馈一起压掉，这里补回来 */
+.el-pagination button:not(:disabled):hover,
+.el-pagination .el-pager li:not(.active):hover {
+  color: $jade-light !important;
+  background: rgba(53, 179, 154, 0.14) !important;
+}
+
+.el-select-dropdown,
+.el-dropdown-menu,
+.el-picker-panel {
+  background: $ink-2;
+  border-color: $line;
+}
+.el-select-dropdown__item { color: $text; }
+.el-select-dropdown__item.hover,
+.el-select-dropdown__item:hover { background: rgba(53, 179, 154, 0.14); }
+
+.el-loading-mask { background: rgba(7, 12, 20, 0.75); }
+.el-loading-spinner .path { stroke: $jade; }
+.el-loading-spinner .el-loading-text { color: $jade-light; }
+.el-divider { background-color: rgba(255, 255, 255, 0.08); }
+.el-divider__text { background: $ink-1; color: $text-dim; }
+.el-tag { border-color: $line; background: rgba(53, 179, 154, 0.12); color: $jade-light; }
+/* 带 type 的 el-tag 特异性是 (0,2,0)，会盖掉上面的 (0,1,0)，必须逐类覆盖 */
+.el-tag.el-tag--success { background: rgba(79, 211, 184, 0.14); border-color: rgba(79, 211, 184, 0.35); color: #8ff0da; }
+.el-tag.el-tag--info { background: rgba(139, 161, 184, 0.14); border-color: rgba(139, 161, 184, 0.3); color: #b9c9d8; }
+.el-tag.el-tag--warning { background: rgba(217, 185, 106, 0.14); border-color: rgba(217, 185, 106, 0.35); color: #e8cf8a; }
+.el-tag.el-tag--danger { background: rgba(212, 105, 92, 0.14); border-color: rgba(212, 105, 92, 0.35); color: #e89a8f; }
+.el-button--text { color: $jade-light; }
+.el-button--text:hover { color: #eafff9; }
+.el-message { background: $ink-2; border-color: $line; }
+.el-message .el-message__content { color: $text !important; }
+.el-form-item__label { color: $text-dim; }
+
+/* ---------- 自定义视觉件 ---------- */
+.xi-title {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: $gold;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+
+  &::before {
+    content: "";
+    width: 3px;
+    height: 14px;
+    margin-right: 8px;
+    background: linear-gradient(180deg, $jade-light, $jade-dark);
+    border-radius: 2px;
+  }
+}
+
+.xi-panel {
+  background: rgba(18, 30, 46, 0.66);
+  border: 1px solid $line;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.xi-stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+  font-size: 13px;
+
+  &:last-child { border-bottom: none; }
+  .label { color: $text-dim; }
+  .value { color: $text; font-variant-numeric: tabular-nums; }
+  .value.gold { color: $gold; }
+  .value.jade { color: $jade-light; }
+}
+
+.xi-realm {
+  font-size: 26px;
+  letter-spacing: 4px;
+  background: linear-gradient(180deg, #fff6d8, $gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+  padding: 6px 0 2px;
+}
+
+/* 稀有度：1凡 2灵 3宝 4仙 5神 6道 */
+.rarity-1 { color: #9fb0c0; }
+.rarity-2 { color: #6fb2e0; }
+.rarity-3 { color: #b98fe0; }
+.rarity-4 { color: $gold; }
+.rarity-5 { color: #ff8f5c; }
+.rarity-6 {
+  color: #5cf0d0;
+  text-shadow: 0 0 6px rgba(92, 240, 208, 0.45);
+}
+
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.item-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid $line;
+  border-radius: 6px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+
+  &:hover {
+    border-color: $jade;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  }
+  &.equipped { border-color: $gold; box-shadow: inset 0 0 0 1px rgba(217, 185, 106, 0.4); }
+
+  .item-icon {
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 18px;
+    border: 1px solid currentColor;
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .item-name { font-size: 14px; margin-top: 8px; }
+  .item-desc { font-size: 12px; color: $text-dim; margin-top: 4px; line-height: 1.5; min-height: 32px; }
+  .item-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; font-size: 12px; }
+  .item-num {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    font-size: 12px;
+    color: $text-dim;
+  }
+}
+
+.battle-log {
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 6px;
+
+  .row {
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-bottom: 4px;
+    animation: fadeUp 0.25s ease;
+
+    &.monster { background: rgba(200, 90, 80, 0.10); }
+    &.player { background: rgba(53, 179, 154, 0.10); }
+    &.crit { border-left: 2px solid #e0a03c; }
+  }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.hp-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+
+  .fill {
+    height: 100%;
+    transition: width 0.4s ease;
+  }
+  &.player .fill { background: linear-gradient(90deg, $jade-dark, $jade-light); }
+  &.monster .fill { background: linear-gradient(90deg, #8c3b34, #d4695c); }
+}
+
+.xi-empty {
+  text-align: center;
+  color: $text-dim;
+  padding: 40px 0;
+  font-size: 13px;
+}

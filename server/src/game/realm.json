@@ -1,0 +1,15 @@
+{
+  "_comment": "境界配置：每人 9 层。stonePerSec 为每层基础灵石产出，expBase 为第 1 层所需修为",
+  "levelsPerRealm": 9,
+  "levelGrowth": 1.35,
+  "realms": [
+    { "id": 0, "name": "炼气", "stonePerSec": 6,       "expBase": 100,       "breakBonus": 0.85, "color": "#8fd3a0", "desc": "引气入体，凡骨初蜕。" },
+    { "id": 1, "name": "筑基", "stonePerSec": 40,      "expBase": 1200,      "breakBonus": 0.78, "color": "#5fb3d4", "desc": "道基初成，可御法器。" },
+    { "id": 2, "name": "金丹", "stonePerSec": 260,     "expBase": 15000,     "breakBonus": 0.70, "color": "#d4b25f", "desc": "结丹化婴，寿元大增。" },
+    { "id": 3, "name": "元婴", "stonePerSec": 1800,    "expBase": 180000,    "breakBonus": 0.62, "color": "#b98fe0", "desc": "元婴出窍，神游千里。" },
+    { "id": 4, "name": "化神", "stonePerSec": 13000,   "expBase": 2200000,   "breakBonus": 0.55, "color": "#e08a8a", "desc": "化神返虚，一念动风云。" },
+    { "id": 5, "name": "炼虚", "stonePerSec": 90000,   "expBase": 26000000,  "breakBonus": 0.50, "color": "#7fd8c8", "desc": "炼虚合道，虚空生莲。" },
+    { "id": 6, "name": "合体", "stonePerSec": 600000,  "expBase": 320000000, "breakBonus": 0.45, "color": "#c9a227", "desc": "法体合一，与天地同呼吸。" },
+    { "id": 7, "name": "大乘", "stonePerSec": 4000000, "expBase": 4000000000, "breakBonus": 0.40, "color": "#ffd76e", "desc": "大乘之境，只差一步登仙。" }
+  ]
+}

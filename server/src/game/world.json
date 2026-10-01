@@ -1,0 +1,68 @@
+{
+  "_comment": "世界规则：灵根、五行相克、洞府、突破、战斗、洗练、出售。改这里即可调平衡，不用改代码。",
+  "elements": ["金", "木", "水", "火", "土"],
+  "elementCycle": { "金": "木", "木": "土", "土": "水", "水": "火", "火": "金" },
+  "elementColors": { "金": "#d8c27a", "木": "#7fc47f", "水": "#6fb2e0", "火": "#e07a6f", "土": "#c8a878" },
+
+  "rootRoll": { "min": 5, "max": 95 },
+  "rootMainBonusPerPoint": 0.01,
+  "_rerollCost_comment": "洗练花费随该灵根当前值递增：cost = base + base × factor × (value/max)²。base=3000,factor=50 时：0→3000，50→44600，95→153000",
+  "rerollRootsCost": { "base": 3000, "factor": 50 },
+  "rootPityEvery": 5,
+  "_rootCountName_comment": "主灵根命名用，键是「数值不为 0 的灵根条数」",
+  "rootCountName": { "1": "单", "2": "双", "3": "三", "4": "四", "5": "五" },
+
+  "sellRate": 0.7,
+
+  "_cave_comment": "洞府是仅次于装备的长期灵石去处，成本随境界经济同步上调，避免后期一升级就满",
+  "cave": [
+    { "level": 1,  "costStone": 0,           "stoneBonus": 0 },
+    { "level": 2,  "costStone": 5000,        "stoneBonus": 0.05 },
+    { "level": 3,  "costStone": 30000,       "stoneBonus": 0.10 },
+    { "level": 4,  "costStone": 200000,      "stoneBonus": 0.15 },
+    { "level": 5,  "costStone": 1200000,     "stoneBonus": 0.20 },
+    { "level": 6,  "costStone": 8000000,     "stoneBonus": 0.25 },
+    { "level": 7,  "costStone": 50000000,    "stoneBonus": 0.30 },
+    { "level": 8,  "costStone": 300000000,   "stoneBonus": 0.38 },
+    { "level": 9,  "costStone": 2000000000,  "stoneBonus": 0.46 },
+    { "level": 10, "costStone": 12000000000, "stoneBonus": 0.55 }
+  ],
+
+  "breakthrough": {
+    "levelPenalty": 0.05,
+    "pityBonus": 0.15,
+    "minRate": 0.05,
+    "maxRate": 0.95,
+    "_maxRateWithStone_comment": "悟道石可以把成功率顶到 100%，见 combat 段的 hardMaxRate",
+    "failExpCostRate": 0.30
+  },
+
+  "statBase": {
+    "atk": 12, "atkPerLv": 8,
+    "def": 6, "defPerLv": 3,
+    "hp": 200, "hpPerLv": 90,
+    "speedBase": 10, "speedPerRealm": 1,
+    "rootAtkFactor": 0.005
+  },
+
+  "combat": {
+    "critRate": 0.10,
+    "critMul": 1.50,
+    "defFactor": 0.60,
+    "elementAdvantage": 1.30,
+    "elementDisadvantage": 0.75,
+    "maxRounds": 30,
+    "varianceMin": 0.95,
+    "varianceMax": 1.05,
+
+    "_rootMul_comment": "伤害按每条灵根分别判定克制。攻方：rootMul = Σ(克制系数 × 灵根值/满值) / 灵根条数 × rootMulScale。灵根值越高、条数越少，均值越高。",
+    "rootMulScale": 1.9,
+    "minRootMul": 0.35,
+    "_emptyRootMul_comment": "五条灵根全部为 0（凡体）时的保底系数，刻意压低：没有灵根反而更弱",
+    "emptyRootMul": 0.30,
+    "_chaosMul_comment": "五条灵根全部圆满时的额外优势",
+    "chaosMul": 1.50,
+
+    "_defMul_comment": "守方：defMul = Σ(对方五行对自己的克制系数) / 灵根条数，不加权、不缩放。五灵根≈1.0，单灵根则押注单一对抗关系。"
+  }
+}

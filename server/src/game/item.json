@@ -1,0 +1,45 @@
+{
+  "_comment": "物品配置。type: pill 丹药 / artifact 法宝 / skill 功法 / breakStone 悟道石 / rootReset 散灵丹。price 单位为灵石。rarity: 1凡品 2灵品 3宝品 4仙品 5神品 6道品。出售价 = floor(price × world.sellRate)",
+  "_tier_comment": "法宝与功法各 8 档，一一对应八个大境界（realm 字段）。价格为「到达该境界时的实际产出 × 30~40 分钟」，保证后期不因产出暴涨而变得廉价。",
+  "_stone_comment": "悟道石是消耗品：加成持续到本次突破成功为止，成功后清零。因为只保一次，价格按「该境界约 1 分钟产出」定，否则会变成没人买的死道具。",
+  "items": [
+    { "id": 1, "name": "聚气丹",   "type": "pill", "rarity": 1, "icon": "丹", "price": 100,       "desc": "以灵草炼制，服下化气为修为。",           "effect": { "expGain": 600 } },
+    { "id": 2, "name": "凝神丹",   "type": "pill", "rarity": 2, "icon": "丹", "price": 1200,      "desc": "凝练心神，修为小涨。",                   "effect": { "expGain": 8000 } },
+    { "id": 3, "name": "破境丹",   "type": "pill", "rarity": 3, "icon": "丹", "price": 230000,    "desc": "临关一搏，金丹修士的常备之物。",         "effect": { "expGain": 170000 } },
+    { "id": 4, "name": "培元丹",   "type": "pill", "rarity": 4, "icon": "丹", "price": 1600000,   "desc": "元婴修士以百年灵药炼成，一丹抵旬日苦修。", "effect": { "expGain": 2000000 } },
+    { "id": 5, "name": "九转金丹", "type": "pill", "rarity": 5, "icon": "丹", "price": 12000000,  "desc": "九转九炼，化神修士服之如饮甘泉。",       "effect": { "expGain": 25000000 } },
+    { "id": 6, "name": "太清仙丹", "type": "pill", "rarity": 6, "icon": "丹", "price": 80000000,  "desc": "太清仙气凝成，炼虚以上方堪承受。",       "effect": { "expGain": 300000000 } },
+    { "id": 7, "name": "混元道丹", "type": "pill", "rarity": 6, "icon": "丹", "price": 1500000000, "desc": "混元一气所化，合体大乘者的续命之物。",   "effect": { "expGain": 4000000000 } },
+
+    { "id": 11, "name": "引气诀",   "type": "skill", "realm": 0, "rarity": 1, "icon": "诀", "price": 500,         "desc": "炼气期入门吐纳之法，聚气稍快。",   "effect": { "stoneBonus": 0.20 } },
+    { "id": 12, "name": "玄天心法", "type": "skill", "realm": 1, "rarity": 2, "icon": "诀", "price": 350000,      "desc": "筑基期玄门正宗，气机绵长。",       "effect": { "stoneBonus": 0.60, "atk": 125 } },
+    { "id": 13, "name": "太虚道经", "type": "skill", "realm": 2, "rarity": 3, "icon": "诀", "price": 2800000,     "desc": "金丹期直指大道，吞吐太虚之气。",   "effect": { "stoneBonus": 1.50, "atk": 500, "def": 200 } },
+    { "id": 14, "name": "九转元功", "type": "skill", "realm": 3, "rarity": 4, "icon": "诀", "price": 18000000,    "desc": "元婴期九转还元，法体同修。",       "effect": { "stoneBonus": 3.00, "atk": 2000, "def": 750 } },
+    { "id": 15, "name": "大衍神通", "type": "skill", "realm": 4, "rarity": 4, "icon": "诀", "price": 168000000,   "desc": "化神期大衍之数，一念动风云。",     "effect": { "stoneBonus": 6.00, "atk": 7500, "def": 3000 } },
+    { "id": 16, "name": "无极真解", "type": "skill", "realm": 5, "rarity": 5, "icon": "诀", "price": 2120000000,  "desc": "炼虚期参悟无极，虚空生莲。",       "effect": { "stoneBonus": 12.00, "atk": 30000, "def": 12500 } },
+    { "id": 17, "name": "混元道果", "type": "skill", "realm": 6, "rarity": 5, "icon": "诀", "price": 27300000000, "desc": "合体期结出道果，与天地同呼吸。",   "effect": { "stoneBonus": 25.00, "atk": 125000, "def": 50000 } },
+    { "id": 18, "name": "造化玉牒", "type": "skill", "realm": 7, "rarity": 6, "icon": "诀", "price": 386000000000, "desc": "大乘期窥见造化，只差一步登仙。",  "effect": { "stoneBonus": 50.00, "atk": 500000, "def": 200000 } },
+
+    { "id": 21, "name": "青锋剑",     "type": "artifact", "realm": 0, "rarity": 1, "icon": "剑", "price": 800,         "desc": "炼气期凡铁淬灵，锋锐可用。",         "effect": { "atk": 30, "stoneBonus": 0.06 } },
+    { "id": 22, "name": "护心镜",     "type": "artifact", "realm": 1, "rarity": 2, "icon": "镜", "price": 300000,      "desc": "筑基期护住心脉，临阵不慌。",         "effect": { "def": 200, "hp": 5000 } },
+    { "id": 23, "name": "玄铁重剑",   "type": "artifact", "realm": 1, "rarity": 2, "icon": "剑", "price": 400000,      "desc": "筑基期重剑无锋，大巧不工。",         "effect": { "atk": 150, "def": 50, "stoneBonus": 0.13 } },
+    { "id": 24, "name": "乾坤鼎",     "type": "artifact", "realm": 2, "rarity": 3, "icon": "鼎", "price": 2500000,     "desc": "金丹期鼎纳乾坤，自生灵石。",         "effect": { "def": 1000, "hp": 30000, "stoneBonus": 0.19 } },
+    { "id": 25, "name": "紫霄神剑",   "type": "artifact", "realm": 2, "rarity": 3, "icon": "剑", "price": 3000000,     "desc": "金丹期紫霄雷气相随，一剑破万法。",   "effect": { "atk": 750, "def": 250, "stoneBonus": 0.25 } },
+    { "id": 26, "name": "赤霄焚天戟", "type": "artifact", "realm": 3, "rarity": 4, "icon": "戟", "price": 20000000,    "desc": "元婴期戟出焚天，赤地千里。",         "effect": { "atk": 3750, "def": 1250, "hp": 50000, "stoneBonus": 0.44 } },
+    { "id": 27, "name": "太乙玄光镜", "type": "artifact", "realm": 4, "rarity": 4, "icon": "镜", "price": 224000000,   "desc": "化神期玄光护体，万法不侵。",         "effect": { "atk": 17500, "def": 6250, "hp": 250000, "stoneBonus": 0.75 } },
+    { "id": 28, "name": "混沌青莲",   "type": "artifact", "realm": 5, "rarity": 5, "icon": "莲", "price": 2820000000,  "desc": "炼虚期青莲十二品，生于虚空。",       "effect": { "atk": 87500, "def": 30000, "hp": 1250000, "stoneBonus": 1.25 } },
+    { "id": 29, "name": "周天星斗盘", "type": "artifact", "realm": 6, "rarity": 5, "icon": "盘", "price": 36400000000, "desc": "合体期布下周天星斗，借星辰之力。",   "effect": { "atk": 450000, "def": 150000, "hp": 6250000, "stoneBonus": 2.00 } },
+    { "id": 30, "name": "鸿蒙紫气钟", "type": "artifact", "realm": 7, "rarity": 6, "icon": "钟", "price": 515000000000, "desc": "大乘期鸿蒙紫气凝钟，一响天地寂。", "effect": { "atk": 2250000, "def": 750000, "hp": 30000000, "stoneBonus": 3.10 } },
+
+    { "id": 31, "name": "悟道石·炼气", "type": "breakStone", "realm": 0, "rarity": 2, "icon": "悟", "price": 500,         "desc": "炼气期可用。买入即时参悟，突破成功率 +15%（最高 100%），效果持续到本次突破成功为止。突破成功一次后此加成即散，需重新购买。", "effect": { "breakBonus": 1500 } },
+    { "id": 32, "name": "悟道石·筑基", "type": "breakStone", "realm": 1, "rarity": 2, "icon": "悟", "price": 5000,        "desc": "筑基期可用。买入即时参悟，突破成功率 +15%（最高 100%），效果持续到本次突破成功为止。突破成功一次后此加成即散，需重新购买。", "effect": { "breakBonus": 1500 } },
+    { "id": 33, "name": "悟道石·金丹", "type": "breakStone", "realm": 2, "rarity": 3, "icon": "悟", "price": 40000,       "desc": "金丹期可用。买入即时参悟，突破成功率 +15%（最高 100%），效果持续到本次突破成功为止。突破成功一次后此加成即散，需重新购买。", "effect": { "breakBonus": 1500 } },
+    { "id": 34, "name": "悟道石·元婴", "type": "breakStone", "realm": 3, "rarity": 4, "icon": "悟", "price": 450000,      "desc": "元婴期可用。买入即时参悟，突破成功率 +15%（最高 100%），效果持续到本次突破成功为止。突破成功一次后此加成即散，需重新购买。", "effect": { "breakBonus": 1500 } },
+    { "id": 35, "name": "悟道石·化神", "type": "breakStone", "realm": 4, "rarity": 4, "icon": "悟", "price": 5500000,     "desc": "化神期可用。买入即时参悟，突破成功率 +15%（最高 100%），效果持续到本次突破成功为止。突破成功一次后此加成即散，需重新购买。", "effect": { "breakBonus": 1500 } },
+    { "id": 36, "name": "悟道石·炼虚", "type": "breakStone", "realm": 5, "rarity": 5, "icon": "悟", "price": 70000000,    "desc": "炼虚期可用。买入即时参悟，突破成功率 +15%（最高 100%），效果持续到本次突破成功为止。突破成功一次后此加成即散，需重新购买。", "effect": { "breakBonus": 1500 } },
+    { "id": 37, "name": "悟道石·合体", "type": "breakStone", "realm": 6, "rarity": 5, "icon": "悟", "price": 900000000,   "desc": "合体期可用。买入即时参悟，突破成功率 +15%（最高 100%），效果持续到本次突破成功为止。突破成功一次后此加成即散，需重新购买。", "effect": { "breakBonus": 1500 } },
+    { "id": 38, "name": "悟道石·大乘", "type": "breakStone", "realm": 7, "rarity": 6, "icon": "悟", "price": 13000000000, "desc": "大乘期可用。买入即时参悟，突破成功率 +15%（最高 100%），效果持续到本次突破成功为止。突破成功一次后此加成即散，需重新购买。", "effect": { "breakBonus": 1500 } },
+
+    { "id": 41, "name": "散灵丹", "type": "rootReset", "rarity": 5, "icon": "散", "price": 500000, "desc": "服下后指定一条灵根，其灵根值直接归零。灵根越集中，斗法越强，但此丹不可逆。", "effect": { "resetRoot": true } }
+  ]
+}

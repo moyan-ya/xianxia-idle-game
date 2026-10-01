@@ -1,0 +1,35 @@
+仙侠放置 · 一念千年 —— 本地启动速查
+========================================
+
+两个终端分别执行。先后端，再前端（前端要把 /api 代理到 3000）。
+
+【后端】http://127.0.0.1:3000
+    cd G:\New\demo\server
+    node app.js
+    :: 或 npm run dev（用 nodemon，改代码自动重启）
+
+【前端】http://localhost:8080
+    cd G:\New\demo\client
+    node node_modules\@vue\cli-service\bin\vue-cli-service.js serve
+    :: 或 npm run serve
+    :: 注意：用 vue-cli-service.js 直接跑，是因为 npm 脚本在本机会触发 spawn EPERM
+
+【演示账号】
+    test / 123456   （道号：凌尘）
+
+【首次准备 / 重置数据库】
+    cd G:\New\demo\server
+    copy .env.example .env        :: 然后填 DB_PASSWORD
+    npm run db:reset             :: 建库建表 + 演示账号（会清空数据，需确认）
+    npm run db:migrate           :: 老库平滑升级，保留玩家数据
+
+【回归测试】
+    cd G:\New\demo\server
+    node scripts\bug-probe.js    :: 对抗性探针，跑在 3100，可与开发服务器共存
+    node scripts\smoke-test.js   :: 需要独占 3000 端口，先停掉后端
+    node scripts\tune-tower.js --write   :: 重算试炼塔数值
+    node scripts\cleanup-test-data.js --apply   :: 清理测试账号
+
+【重新生成站点图标】
+    cd G:\New\demo\client
+    python scripts\make-icon.py
